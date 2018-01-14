@@ -1,10 +1,42 @@
  body{
-background: #702963;
+background: #D7D7D5;
+height: 100%;
+margin: 0;
+padding: 0;
 }
 
 h1{
+	position: relative;
+	top: 300px;
 	text-align: center;
-	font-family:"Times New Roman";
-	font: 32pt;
-	color: #ff3819;
+	font-family: Georgia, serif;
+	font-size: 48px;
+	color: #900020;
+}
+
+h2{
+	position: relative;
+	top: 300px;
+	text-align: center;
+	font-family: Georgia, serif;
+	font-size:32px;
+	color: #ffffff;
+}
+
+img{
+	padding: 0;
+	display:block;
+	margin: 0 auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+#topbar{
+	background-image:url('images/upperbordergif.gif');
+	margin: 0;
+	padding: 0;
+	width:auto;
+	height:401px;
+	background-repeat: no-repeat;
+	padding-top: 1px;
 }
