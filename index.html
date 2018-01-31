@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Eisaku Imura - Portfolio</title>
-    <link href="style.css" type="text/css" rel="stylesheet">
-  </head>
-  <body>
-    <div id="topbar">
-	  <h1>Eisaku Imura</h1>
-	  <h2>Game Designer & Programmer</h2>
-    </div>
-    <div id="main">
-	  <h3>About</h3>
-	  <p>Game designer and programmer in senior year of university.</p>
-	  <p class="about_desc">Focusing on designing and building games that are not only just entertaining, but also games that can have an impact on one's way of life.</p>
-	  <hr width="30%">
-	  <h4>Work</h4>
-	  <!--
-	  <div class="auto-resizable-iframe">
-        <div>
-          <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/3nDrqtOcw1k"></iframe>
-        </div>
-      </div>-->
-	  <script>
+<script>
 	    var videos = document.getElementsByTagName("video"),
         fraction = 0.8;
         function checkScroll() {
@@ -46,9 +25,39 @@
         window.addEventListener('scroll', checkScroll, false);
         window.addEventListener('resize', checkScroll, false);
 	  </script>
-	  <video width="500" height="400" muted loop autoplay="autoplay">
-        <source src="videos/sengoku2.mp4" type="video/mp4" />
-      </video>
+  <head>
+    <title>Eisaku Imura - Portfolio</title>
+    <link href="style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="topbar">
+	  <h1>Eisaku Imura</h1>
+	  <h2>Game Designer & Programmer</h2>
+    </div>
+    <div id="main">
+	  <h3>About</h3>
+	  <p>Game designer and programmer in senior year of university.</p>
+	  <p class="about_desc">Focusing on designing and building games that are not only just entertaining, but also games that can have an impact on one's way of life.</p>
+	  <hr width="30%">
+	  <h4>Work</h4>
+	  <!--
+	  <div class="auto-resizable-iframe">
+        <div>
+          <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/3nDrqtOcw1k"></iframe>
+        </div>
+      </div>-->
+	  <div class="sengokuvideo">
+	    <video width="500" height="282" muted loop autoplay="autoplay">
+          <source src="videos/sengoku2.mp4" type="video/mp4" />
+        </video>
+	  </div>
+	  <div class="sengokutitle">
+	    <h5>Sengoku Rhythm</h5>
+		<p class ="sengoku_role">Game Designer & Programmer</p>
+		<a href="#" class="button">Details</a>
+	  </div>
+	  <div class="clearfix">
+	  </div>
 	  
     </div>
   </body>

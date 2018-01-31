@@ -51,6 +51,15 @@ h4{
 	color: #555B6E;
 }
 
+h5{
+	position: relative;
+	margin-top: 0px;
+	text-align: center;
+	font-family: Georgia, serif;
+	font-size:40px;
+	color: #070707;
+}
+
 p{
 	position: relative;
 	margin: auto;
@@ -71,6 +80,17 @@ p.about_desc{
 	color: #070707;
 	text-align: center;
 	padding: 30px;
+}
+p.sengoku_role{
+	position: relative;
+	margin: auto;
+	margin-top: -60px;
+	max-width:700px;
+	font-family: Georgia, serif;
+	font-size:18px;
+	font-style: italic;
+	color: #702963;
+	text-align: center;
 }
 
 hr{
@@ -101,10 +121,104 @@ hr{
 }
 
 video{
-	display: block;
-    margin: 0 auto;
-	margin-left: 400px;
+	
+	min-width: 500px;
+	min-height: 282px;
+	border: 3px solid black;
+	position: absolute;
+  width: 25%;
+  height: auto;
 }
+.button {
+	position: relative;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+	margin-left: 42.5%;
+	margin-top: 10px;
+    cursor: pointer;
+}
+
+.sengokuvideo{
+	width 55%;
+	margin-left: 22.5%;
+	float: left;
+}
+
+.sengokutitle{
+	position:relative;
+	width:42%;
+	margin-right: 15%;
+	margin-top: 5%;
+	float: right;
+}
+
+.clearfix{
+	clear:both;
+}
+
+@media only screen and (max-width:1800px){
+	video{
+		margin-left:-50px;
+	}
+
+}
+@media only screen and (max-width:1600px){
+	video{
+		margin-left:-100px;
+	}
+
+}
+@media only screen and (max-width:1400px){
+	video{
+		margin-left:-100px;
+	}
+	.sengokutitle{
+		margin: 0 auto;
+		margin-right: 27.5%;
+		margin-top: 25%;
+	}
+}
+@media only screen and (max-width:1200px){
+	video{
+		margin-left:-100px;
+	}
+    .sengokutitle{
+		margin: 0 auto;
+		margin-right: 27.5%;
+		margin-top: 30%;
+	}
+}
+@media only screen and (max-width:1000px){
+	video{
+		margin-left:-50px;
+	}
+    .sengokutitle{
+		margin: 0 auto;
+		margin-right: 27.5%;
+		margin-top: 35%;
+	}
+	.button{
+		margin-left: 20%;
+	}
+}
+@media only screen and (max-width:1000px){
+    .sengokutitle{
+		margin: 0 auto;
+		margin-right: 27.5%;
+		margin-top: 45%;
+	}
+	.button{
+		margin-left: 35%;
+	}
+}
+
 /*
 img{
 	padding: 0;
