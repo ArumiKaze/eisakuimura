@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Eisaku Imura</title>
+    <title>Eisaku Imura - Portfolio</title>
     <link href="style.css" type="text/css" rel="stylesheet">
   </head>
   <body>
@@ -10,10 +10,46 @@
 	  <h2>Game Designer & Programmer</h2>
     </div>
     <div id="main">
-	<!--
-      <h1>Eisaku Imura</h1>
-	  <h2>Game Designer & Programmer</h2>
-	  -->
+	  <h3>About</h3>
+	  <p>Game designer and programmer in senior year of university.</p>
+	  <p class="about_desc">Focusing on designing and building games that are not only just entertaining, but also games that can have an impact on one's way of life.</p>
+	  <hr width="30%">
+	  <h4>Work</h4>
+	  <!--
+	  <div class="auto-resizable-iframe">
+        <div>
+          <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/3nDrqtOcw1k"></iframe>
+        </div>
+      </div>-->
+	  <script>
+	    var videos = document.getElementsByTagName("video"),
+        fraction = 0.8;
+        function checkScroll() {
+          for(var i = 0; i < videos.length; i++) {
+            var video = videos[i];
+            var x = video.offsetLeft, y = video.offsetTop, w = video.offsetWidth, h = video.offsetHeight, r = x + w,
+            b = y + h, 
+            visibleX, visibleY, visible;
+
+            visibleX = Math.max(0, Math.min(w, window.pageXOffset + window.innerWidth - x, r - window.pageXOffset));
+            visibleY = Math.max(0, Math.min(h, window.pageYOffset + window.innerHeight - y, b - window.pageYOffset));
+
+            visible = visibleX * visibleY / (w * h);
+
+            if (visible > fraction) {
+                video.play();
+            } else {
+                video.pause();
+            }
+          }
+        }
+        window.addEventListener('scroll', checkScroll, false);
+        window.addEventListener('resize', checkScroll, false);
+	  </script>
+	  <video width="500" height="400" muted loop autoplay="autoplay">
+        <source src="videos/sengoku2.mp4" type="video/mp4" />
+      </video>
+	  
     </div>
   </body>
 </html>
