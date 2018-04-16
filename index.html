@@ -46,7 +46,7 @@
                     stars = new THREE.Points(geometry, material);
                     scene.add(stars);
 
-                    /*
+                    
                     var texture = new THREE.TextureLoader().load('images/moon.png');
                     var image = new THREE.MeshBasicMaterial({
                         map: texture
@@ -61,7 +61,7 @@
 
                     var sprite = new THREE.Sprite(spriteMaterial);
                     sprite.scale.set(200, 200, 1.0);
-                    circle.add(sprite); // this centers the glow at the mesh*/
+                    circle.add(sprite); // this centers the glow at the mesh
                     
                     renderer = new THREE.WebGLRenderer({ alpha: true });
                     renderer.setSize(window.innerWidth, window.innerHeight/2);
