@@ -1,64 +1,120 @@
-<!DOCTYPE html>
-<html>
-<script>
-	    var videos = document.getElementsByTagName("video"),
-        fraction = 0.8;
-        function checkScroll() {
-          for(var i = 0; i < videos.length; i++) {
-            var video = videos[i];
-            var x = video.offsetLeft, y = video.offsetTop, w = video.offsetWidth, h = video.offsetHeight, r = x + w,
-            b = y + h, 
-            visibleX, visibleY, visible;
+﻿<!DOCTYPE html>
 
-            visibleX = Math.max(0, Math.min(w, window.pageXOffset + window.innerWidth - x, r - window.pageXOffset));
-            visibleY = Math.max(0, Math.min(h, window.pageYOffset + window.innerHeight - y, b - window.pageYOffset));
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Eisaku Imura - Portfolio</title>
+        <link href="style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="container">
+            <script src="js/three.js"></script>
+            <script>
+                var container;
+                var camera, scene, renderer;
+                var stars;
+                var starSpanUpper;
+                var starSpanLower;
+                var starUpdate;
 
-            visible = visibleX * visibleY / (w * h);
+                init();
+                animate();
 
-            if (visible > fraction) {
-                video.play();
-            } else {
-                video.pause();
-            }
-          }
-        }
-        window.addEventListener('scroll', checkScroll, false);
-        window.addEventListener('resize', checkScroll, false);
-	  </script>
-  <head>
-    <title>Eisaku Imura - Portfolio</title>
-    <link href="style.css" type="text/css" rel="stylesheet">
-  </head>
-  <body>
-    <div id="topbar">
-	  <h1>Eisaku Imura</h1>
-	  <h2>Game Designer & Programmer</h2>
-    </div>
-    <div id="main">
-	  <h3>About</h3>
-	  <p>Game designer and programmer in senior year of university.</p>
-	  <p class="about_desc">Focusing on designing and building games that are not only just entertaining, but also games that can have an impact on one's way of life.</p>
-	  <hr width="30%">
-	  <h4>Work</h4>
-	  <!--
-	  <div class="auto-resizable-iframe">
-        <div>
-          <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/3nDrqtOcw1k"></iframe>
+                function init() {
+                    container = document.getElementById('container');
+                    camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 0.1, 1000);
+                    scene = new THREE.Scene();
+
+                    starUpdate = false;
+                    starSpanUpper = 2;
+                    starSpanLower = 0;
+
+                    var geometry = new THREE.Geometry();
+                    var x, y, z;
+                    for(var i=0; i < 1000; i++){
+                        x = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
+                        y = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
+                        z = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
+                        geometry.vertices.push(new THREE.Vector3(x, y, z));
+                    }
+
+                    var material = new THREE.PointsMaterial({
+                        size: 1,
+                        color: 0xffffcc
+                    });
+
+                    stars = new THREE.Points(geometry, material);
+                    scene.add(stars);
+
+                    var texture = new THREE.TextureLoader().load('images/moon.png');
+                    var image = new THREE.MeshBasicMaterial({
+                        map: texture
+                    });
+                    var circle = new THREE.Mesh(new THREE.CircleGeometry(500, 500), image);
+                    circle.position.set(0, 0, 0);
+                    scene.add(circle);
+                    
+                    var textureLoader = new THREE.TextureLoader();
+                    var map = textureLoader.load('images/glow.png');
+                    var spriteMaterial = new THREE.SpriteMaterial({ map: map, color: 0x0000ff });
+
+                    var sprite = new THREE.Sprite(spriteMaterial);
+                    sprite.scale.set(200, 200, 1.0);
+                    circle.add(sprite); // this centers the glow at the mesh
+                    
+                    renderer = new THREE.WebGLRenderer({ alpha: true });
+                    renderer.setSize(window.innerWidth, window.innerHeight/2);
+                    container.appendChild(renderer.domElement);
+                    window.addEventListener('resize', onWindowResize, false);
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    render();
+                }
+
+                function render() {
+                    var starSpan = stars.material;
+                    var starPos = stars.geometry;
+                    
+                    if (starSpanUpper > starSpan.size && !starUpdate) {
+                        starSpan.size += 0.01;
+                    }
+                    else if(!starUpdate){
+                        starUpdate = true;
+                    }
+                    if (starSpanLower < starSpan.size && starUpdate) {
+                        starSpan.size -= 0.01;
+                    }
+                    else if(starUpdate){
+                        starUpdate = false;
+                        starPos.verticesNeedUpdate = true;
+                        for (var i = 0; i < 1000; i++){
+                            starPos.vertices[i].x = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
+                            starPos.vertices[i].y = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
+                            starPos.vertices[i].z = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
+                        }
+                    }
+
+                    renderer.render(scene, camera);
+                }
+
+                function onWindowResize(event) {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+
+                    renderer.setSize(window.innerWidth, window.innerHeight/2);
+                }
+            </script>
+            <h1>Eisaku Imura</h1>
+            <h2>Game Designer & Programmer</h2>
+            <h3>About</h3>
+            <center><img src="images/linedivide2.png" alt="" style="width:256px;height:20px;"></center>
+            <p>Game designer and programmer in senior year of university.</p>
+            <p class="about_desc">Focusing on designing and building games that are not only just entertaining, but also games that can have an impact on one's way of life.</p>
+            <hr width="50%">
+            <h4>Work</h4>
+            <center><img src="images/linedivide2.png" alt="" style="width:256px;height:20px;"></center>
         </div>
-      </div>-->
-	  <div class="sengokuvideo">
-	    <video width="500" height="282" muted loop autoplay="autoplay">
-          <source src="videos/sengoku2.mp4" type="video/mp4" />
-        </video>
-	  </div>
-	  <div class="sengokutitle">
-	    <h5>Sengoku Rhythm</h5>
-		<p class ="sengoku_role">Game Designer & Programmer</p>
-		<a href="#" class="button">Details</a>
-	  </div>
-	  <div class="clearfix">
-	  </div>
-	  
-    </div>
-  </body>
+    </body>
 </html>
