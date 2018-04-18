@@ -5,6 +5,7 @@
         <meta charset="utf-8" />
         <title>Eisaku Imura - Portfolio</title>
         <link href="style.css" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div id="container">
@@ -23,15 +24,16 @@
                 function init() {
                     container = document.getElementById('container');
                     camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 0.1, 1000);
+                    camera.position.z = 4;
                     scene = new THREE.Scene();
 
                     starUpdate = false;
-                    starSpanUpper = 2;
+                    starSpanUpper = 1;
                     starSpanLower = 0;
 
                     var geometry = new THREE.Geometry();
                     var x, y, z;
-                    for(var i=0; i < 1000; i++){
+                    for (var i = 0; i < 1000; i++) {
                         x = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
                         y = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
                         z = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
@@ -51,20 +53,31 @@
                     var image = new THREE.MeshBasicMaterial({
                         map: texture
                     });
-                    var circle = new THREE.Mesh(new THREE.CircleGeometry(100, 100), image);
-                    circle.position.set(0, 0, 0);
+                    var circle = new THREE.Mesh(new THREE.CircleGeometry(50, 50), image);
+					circle.scale.set(0.015,0.015,1.0);
+                    circle.position.set(0, -0.3, 0);
                     scene.add(circle);
-                    
+                    /*
+                    var texture2 = new THREE.TextureLoader().load('images/fuji.png');
+                    var image2 = new THREE.MeshBasicMaterial({
+                        map: texture2,
+                        transparent: true
+                    });
+                    var mountain = new THREE.Mesh(new THREE.PlaneGeometry(window.innerWidth / 2, window.innerHeight/2), image2);
+                    mountain.scale.set(0.015, 0.015, 1.0);
+                    mountain.position.set(0, -4, 0);
+                    scene.add(mountain);
+                    */
                     var textureLoader = new THREE.TextureLoader();
                     var map = textureLoader.load('images/glow.png');
-                    var spriteMaterial = new THREE.SpriteMaterial({ map: map, color: 0x0000ff });
+                    var spriteMaterial = new THREE.SpriteMaterial({ map: map, color: 0x0000ff, transparent: false, blending: THREE.AdditiveBlending});
 
                     var sprite = new THREE.Sprite(spriteMaterial);
-                    sprite.scale.set(200, 200, 1.0);
-                    circle.add(sprite); // this centers the glow at the mesh
+                    sprite.scale.set(200, 150, 1.0);
+                    circle.add(sprite); 
                     
                     renderer = new THREE.WebGLRenderer({ alpha: true });
-                    renderer.setSize(window.innerWidth, window.innerHeight/2);
+                    renderer.setSize(window.innerWidth, window.innerHeight);
                     container.appendChild(renderer.domElement);
                     window.addEventListener('resize', onWindowResize, false);
                 }
@@ -77,24 +90,28 @@
                 function render() {
                     var starSpan = stars.material;
                     var starPos = stars.geometry;
-                    
+
+                    stars.rotation.y += 0.0001;
+                    stars.rotation.x += 0.0001;
+
                     if (starSpanUpper > starSpan.size && !starUpdate) {
                         starSpan.size += 0.01;
                     }
-                    else if(!starUpdate){
+                    else if (!starUpdate) {
                         starUpdate = true;
                     }
                     if (starSpanLower < starSpan.size && starUpdate) {
                         starSpan.size -= 0.01;
                     }
-                    else if(starUpdate){
+                    else if (starUpdate) {
                         starUpdate = false;
+                        /*
                         starPos.verticesNeedUpdate = true;
                         for (var i = 0; i < 1000; i++){
                             starPos.vertices[i].x = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
                             starPos.vertices[i].y = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
                             starPos.vertices[i].z = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                        }
+                        }*/
                     }
 
                     renderer.render(scene, camera);
@@ -104,18 +121,73 @@
                     camera.aspect = window.innerWidth / window.innerHeight;
                     camera.updateProjectionMatrix();
 
-                    renderer.setSize(window.innerWidth, window.innerHeight/2);
+                    renderer.setSize(window.innerWidth, window.innerHeight);
                 }
             </script>
             <h1>Eisaku Imura</h1>
             <h2>Game Designer & Programmer</h2>
+            <div id="mountainline">
+                <img src="images/fuji.png" alt="fuji" style="width:1028px;height:526px;padding:3px 6px 3px 6px" align="middle">
+            </div>
             <h3>About</h3>
-            <center><img src="images/linedivide2.png" alt="" style="width:256px;height:20px;"></center>
+            <div id="divideline1">
+                <img src="images/linedivide2.png" alt="linedivide" style="width:256px;height:20px;" align="middle">
+            </div>
             <p>Game designer and programmer in senior year of university.</p>
-            <p class="about_desc">Focusing on designing and building games that are not only just entertaining, but also games that can have an impact on one's way of life.</p>
-            <hr width="50%">
+            <p class="about_desc">Focusing on designing and building games that are not only entertaining, but also games that can have an impact on one's way of life.</p>
+            <div id="infoline">
+                <p class="resume_disc" style="color:royalblue">
+                    <span style="display:block; vertical-align:top">
+                        <strong>Resume</strong>
+                    </span>
+                    <a href="images/resume.pdf" target="_blank">
+                        <img src="images/resume.png" alt="resume" style="width:64px;height:64px;padding:3px 6px 3px 6px" align="middle">
+                    </a>
+                </p>
+            </div>
+            <div id="infoline">
+                <p class="resume_disc" style="color:royalblue">
+                    <span style="display:block; vertical-align:top">
+                        <strong>LinkedIn</strong>
+                    </span>
+                    <a href="https://www.linkedin.com/in/eisaku-imura-769436114/" target="_blank">
+                        <img src="images/linkedin.png" alt="linkedin" style="width:64px;height:64px;padding:3px 6px 3px 6px" align="middle">
+                    </a>
+                </p>
+            </div>
+            <div id="infoline">
+                <p class="resume_disc" style="color:royalblue">
+                    <span style="display:block; vertical-align:top">
+                        <strong>GitHub</strong>
+                    </span>
+                    <a href="https://github.com/ArumiKaze" target="_blank">
+                        <img src="images/github.png" alt="github" style="width:64px;height:64px;padding:3px 6px 3px 6px" align="middle">
+                    </a>
+                </p>
+            </div>
+            <div id="hrline1">
+                <hr width="40%">
+            </div>
             <h4>Work</h4>
-            <center><img src="images/linedivide2.png" alt="" style="width:256px;height:20px;"></center>
+            <div id="divideline2">
+                <img src="images/linedivide2.png" alt="linedivide" style="width:256px;height:20px;" align="middle">
+            </div>
+            <div id="shroommatesline">
+                <p class="game_disc" style="color:black">
+                    <img src="images/shroommatescover.png" alt="shroommates" style="width:384px;height:256px;padding:0px 0px 6px 0px" align="middle">
+                    <span style="display:block; vertical-align:bottom">
+                        <strong><font size="6">Shroommates</font></strong>
+                    </span>
+                </p>
+                <p class="game_disc" style="color:brown">
+                    <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
+                        <i><strong><font size="2">Game Designer & Programmer</font></strong></i>
+                    </span>
+                </p>
+                <a href="#" target="_blank" class="button">Trailer</a>
+                <div class="divider"></div>
+                <a href="https://lionisaqt.github.io/shroommates/" target="_blank" class="button">Details</a>
+            </div>
         </div>
     </body>
 </html>
