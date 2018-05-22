@@ -9,8 +9,9 @@
     </head>
     <body>
         <div id="container">
-            <script src="js/three.js"></script>
-            <script>
+            
+            <script src="js/three.js"></script> 
+            <script> //script to load stars and mountain
                 var container;
                 var camera, scene, renderer;
                 var stars;
@@ -45,10 +46,10 @@
                         color: 0xffffcc
                     });
 
-                    stars = new THREE.Points(geometry, material);
+                    stars = new THREE.Points(geometry, material); //create geometry and materials to add stars to the scene
                     scene.add(stars);
 
-                    
+                    /*
                     var texture = new THREE.TextureLoader().load('images/moon.png');
                     var image = new THREE.MeshBasicMaterial({
                         map: texture
@@ -57,7 +58,7 @@
 					circle.scale.set(0.015,0.015,1.0);
                     circle.position.set(0, -0.3, 0);
                     scene.add(circle);
-                    /*
+                    
                     var texture2 = new THREE.TextureLoader().load('images/fuji.png');
                     var image2 = new THREE.MeshBasicMaterial({
                         map: texture2,
@@ -67,7 +68,7 @@
                     mountain.scale.set(0.015, 0.015, 1.0);
                     mountain.position.set(0, -4, 0);
                     scene.add(mountain);
-                    */
+                    
                     var textureLoader = new THREE.TextureLoader();
                     var map = textureLoader.load('images/glow.png');
                     var spriteMaterial = new THREE.SpriteMaterial({ map: map, color: 0x0000ff, transparent: false, blending: THREE.AdditiveBlending});
@@ -75,14 +76,15 @@
                     var sprite = new THREE.Sprite(spriteMaterial);
                     sprite.scale.set(150, 150, 1.0);
                     circle.add(sprite); 
+                    */
                     
                     renderer = new THREE.WebGLRenderer({ alpha: true });
                     renderer.setSize(window.innerWidth, window.innerHeight);
                     container.appendChild(renderer.domElement);
-                    window.addEventListener('resize', onWindowResize, false);
+                    window.addEventListener('resize', onWindowResize, false);  //if window is resized, the scene is also adjusted to the new window size
                 }
 
-                function animate() {
+                function animate() { //keep rendering/updating the scene
                     requestAnimationFrame(animate);
                     render();
                 }
@@ -91,7 +93,7 @@
                     var starSpan = stars.material;
                     var starPos = stars.geometry;
 
-                    stars.rotation.y += 0.0001;
+                    stars.rotation.y += 0.0001;  //speed of rotation of stars
                     stars.rotation.x += 0.0001;
 
                     if (starSpanUpper > starSpan.size && !starUpdate) {
@@ -124,6 +126,13 @@
                     renderer.setSize(window.innerWidth, window.innerHeight);
                 }
             </script>
+            <ul class="nav">
+                <li>
+                    <a href="#container">Home</a>
+                    <a href="#mountainline">About</a>
+                    <a href="#hrline1">Work</a>
+                </li>
+            </ul>
             <h1>Eisaku Imura</h1>
             <h2>Game Designer & Programmer</h2>
             <div id="mountainline">
@@ -176,19 +185,51 @@
             </div>
             <div id="shroommatesline">
                 <p class="game_disc" style="color:black">
-                    <img src="images/shroommatescover.png" alt="shroommates" style="width:384px;height:256px;padding:0px 0px 6px 0px" align="middle">
-                    <span style="display:block; vertical-align:bottom">
+                    <img src="images/shroommatescover.png" alt="shroommates" class="gameborder" style="width:400px;height:250px;padding:0px 0px 0px 0px" align="middle">
+                    <span style="display:block; vertical-align:bottom; padding-top: 10px;">
                         <strong><font size="6">Shroommates</font></strong>
                     </span>
                 </p>
                 <p class="game_disc" style="color:brown">
                     <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
-                        <i><strong><font size="2">Game Designer & Programmer</font></strong></i>
+                        <i><strong><font size="4">Lead QA Tester • Lead Level Designer • Game Programmer</font></strong></i>
                     </span>
                 </p>
                 <a href="#" target="_blank" class="button">Trailer</a>
                 <div class="divider"></div>
-                <a href="https://lionisaqt.github.io/shroommates/" target="_blank" class="button">Details</a>
+                <a href="shroommates.html" target="_self" class="button">Details</a>
+            </div>
+            <div id="sengokuline">
+                <p class="game_disc" style="color:black">
+                    <img src="images/sengoku.png" alt="sengoku_rhythm" class="gameborder" style="width:400px;height:250px;padding:0px 0px 0px 0px" align="middle">
+                    <span style="display:block; vertical-align:bottom; padding-top: 10px;">
+                       <strong><font size="6">Sengoku Rhythm</font></strong>
+                    </span>
+                </p>
+                <p class="game_disc" style="color:brown">
+                    <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
+                        <i><strong><font size="4">Game Designer • Game Programmer</font></strong></i>
+                    </span>
+                </p>
+                <a href="https://www.youtube.com/watch?v=3nDrqtOcw1k" target="_blank" class="button">Trailer</a>
+                <div class="divider"></div>
+                <a href="sengoku.html" target="_self" class="button">Details</a>
+            </div>
+            <div id="talchulline">
+                <p class="game_disc" style="color:black">
+                    <img src="images/talchulcover.png" alt="talchul" class="gameborder" style="width:400px;height:250px;padding:0px 0px 0px 0px" align="middle">
+                    <span style="display:block; vertical-align:bottom; padding-top: 10px;">
+                        <strong><font size="6">Talchul</font></strong>
+                    </span>
+                </p>
+                <p class="game_disc" style="color:brown">
+                    <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
+                        <i><strong><font size="4">Game Designer • Game Programmer</font></strong></i>
+                    </span>
+                </p>
+                <a href="#" target="_blank" class="button">Trailer</a>
+                <div class="divider"></div>
+                <a href="talchul.html" target="_self" class="button">Details</a>
             </div>
         </div>
     </body>

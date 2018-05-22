@@ -7,13 +7,89 @@
     background-color: antiquewhite;
 }
 
+
 #container {
     width: inherit;
     height: inherit;
     text-align: center;
     margin: 0;
     padding: 0;
-    background: linear-gradient(rgba(112,41,99, 1), rgba(250,235,215, 1));
+    background: linear-gradient(rgba(112,41,99, 1), rgba(144, 0, 32, 0.5), rgba(250,235,215, 1));
+}
+
+.nav {
+    position: relative;
+    top: -99%;
+    padding: 0px 100px 0px 100px;
+    color: #ffffff;
+    list-style: none;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 48px;
+}
+
+.nav > li{
+    display: inline-block;
+}
+
+.nav > li > a{
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0 50px 0 50px;
+}
+
+.nav > li > a:hover{
+    color: crimson;
+}
+
+.nav_normal {
+    position: relative;
+    margin: 0px;
+    padding: 0px 50px 0px 50px;
+    top: 5%;
+    color: #ffffff;
+    list-style: none;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 48px;
+}
+
+.nav_normal > li {
+    display: inline-block;
+}
+
+.nav_normal > li > a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0 50px 0 50px;
+}
+
+.nav_normal > li > a:hover {
+    color: crimson;
+}
+
+.sengokuinfo_inside {
+    margin: 0 auto;
+    position: relative;
+    margin-top: 150px;
+    padding: 0px 50px 0px 50px;
+    top: 20%;
+    color: #000000;
+    list-style: none;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+
+.sengokuinfo > li {
+    padding: 5px 0px 5px 0px;
+}
+
+#sengokuinfo_outside {
+    position: relative;
+    top: 20%;
+    margin: 0 auto;
+    display: table;
 }
 
 #mountainline {
@@ -40,6 +116,39 @@
     display: inline-block;
 }
 
+#sengoku_protoimages_outside {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 30%;
+    right: 0%;
+    left: 0%;
+}
+
+#sengoku_protoimages_inside {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+}
+
+#sengoku_protoimages_outside2 {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 40%;
+    right: 0%;
+    left: 0%;
+}
+
+#sengoku_finalimage_outside {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 55%;
+    right: 0%;
+    left: 0%;
+}
+
 #shroommatesline {
     margin: auto;
     text-align: center;
@@ -47,7 +156,27 @@
     top: -93%;
     right: 0%;
     left: 0%;
-    margin-bottom: -90%;
+    margin-bottom: 5%;
+}
+
+#sengokuline {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: -93%;
+    right: 0%;
+    left: 0%;
+    margin-bottom: 5%;
+}
+
+#talchulline {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: -93%;
+    right: 0%;
+    left: 0%;
+    margin-bottom: 5%;
 }
 
 #divideline1 {
@@ -57,7 +186,6 @@
     top: -96%;
     right: 0%;
     left: 0%;
-    text-align: center
 }
 
 #divideline2 {
@@ -67,7 +195,6 @@
     top: -98%;
     right: 0%;
     left: 0%;
-    text-align: center
 }
 
 #hrline1 {
@@ -77,7 +204,52 @@
     top: -91%;
     right: 0%;
     left: 0%;
-    text-align: center
+}
+
+#sengoku_hrline1 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 33%;
+    right: 0%;
+    left: 0%;
+}
+
+#sengoku_hrline2 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 18%;
+    right: 0%;
+    left: 0%;
+}
+
+#sengoku_hrline3 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 25%;
+    right: 0%;
+    left: 0%;
+}
+
+#sengoku_hrline4 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 45%;
+    right: 0%;
+    left: 0%;
+}
+
+#sengokutrailer {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 67%;
+    right: 0%;
+    left: 0%;
+    margin-bottom: 5%;
 }
 
 h1 {
@@ -86,7 +258,7 @@ h1 {
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
-    font-family: Georgia, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 48px;
     color: #900020;
 }
@@ -97,7 +269,7 @@ h2 {
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
-    font-family: Georgia, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 32px;
     color: #ffffff;
 }
@@ -108,7 +280,7 @@ h3 {
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
-    font-family: Georgia, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 48px;
     color: #555B6E;
 }
@@ -119,9 +291,55 @@ h4 {
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
-    font-family: Georgia, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 48px;
     color: #555B6E;
+}
+
+h1_sengoku {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 20%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 64px;
+    color: aquamarine;
+}
+
+h2_sengoku {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 20%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+
+}
+
+h3_sengoku {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 27%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+h4_sengoku {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 50%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
 }
 
 hr {
@@ -137,8 +355,8 @@ p {
     top: -90%;
     margin: auto;
     max-width: 700px;
-    font-family: Georgia, serif;
-    font-size: 24px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
     color: #070707;
     text-align: center;
     padding: 0px 30px 0px 30px;
@@ -146,7 +364,7 @@ p {
 
 p.about_desc {
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 24px;
     padding: 30px;
 }
 
@@ -162,15 +380,68 @@ p.game_desc {
     padding: 30px;
 }
 
+k {
+    position: relative;
+    display: block;
+    top: 25%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+}
+
+l {
+    position: relative;
+    display: block;
+    top: 35%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+}
+
+j {
+    position: relative;
+    display: block;
+    top: 45%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+}
+
+m {
+    position: relative;
+    display: block;
+    top: 60%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+}
+
 .button {
     position: relative;
-    background-color: #4CAF50;
+    background-color: #702963;
     border: none;
     color: white;
     padding: 12px 24px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
     margin: 0 auto;
 
@@ -189,4 +460,227 @@ img {
     margin: 0 auto;
     max-height: 100%;
     max-width: 100%;
+}
+
+.gameborder {
+    border: 5px solid #555B6E;
+}
+
+
+
+.gallery {
+    position: relative;
+    top: 30%;
+    margin: 0 auto;
+}
+
+.slides {
+    display: none;
+}
+
+.prev {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    margin-left: -300px;
+    padding: 16px;
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    margin-left: 252px;
+    padding: 16px;
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.numbertext {
+    color: red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 100%;
+    width: auto;
+    margin-left: 48.5%;
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/*=========================================================*/
+/*Talchul page*/
+
+h1_talchul {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 20%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 64px;
+    color: aquamarine;
+}
+h2_talchul {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 20%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+h3_talchul {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    top: 27%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+#talchul_hrline1 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 33%;
+    right: 0%;
+    left: 0%;
+}
+#talchul_hrline2 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 18%;
+    right: 0%;
+    left: 0%;
+}
+#talchul_hrline3 {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 25%;
+    right: 0%;
+    left: 0%;
+}
+
+#talchul_protoimages_outside {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 30%;
+    right: 0%;
+    left: 0%;
+}
+
+#talchul_protoimages_inside {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+}
+
+#talchulinfo_outside {
+    position: relative;
+    top: 20%;
+    margin: 0 auto;
+    display: table;
+}
+.talchulinfo_inside {
+    margin: 0 auto;
+    position: relative;
+    margin-top: 150px;
+    padding: 0px 50px 0px 50px;
+    top: 20%;
+    color: #000000;
+    list-style: none;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+.talchulinfo > li {
+    padding: 5px 0px 5px 0px;
+}
+
+talchul_p1 {
+    position: relative;
+    display: block;
+    top: 25%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+}
+talchul_p2 {
+    position: relative;
+    display: block;
+    top: 35%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+}
+talchul_p3 {
+    position: relative;
+    display: block;
+    top: 35%;
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #070707;
+    text-align: left;
+    padding: 0px 30px 0px 30px;
+    margin-bottom: 5%;
 }

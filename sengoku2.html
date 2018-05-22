@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Eisaku Imura - Portfolio</title>
+        <link href="style.css" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="container">
+            <ul class="nav_normal">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+            </ul>
+            <h1_sengoku>Sengoku Rhythm</h1_sengoku>
+            <div class="slider"><img src="images/sengoku.png" alt="sengoku_rhythm" class="gameborder" style="width:400px;height:250px;padding:0px 0px 0px 0px" align="middle"/></div>
+            <div class="slider"><img src="images/shroommatescover.png" alt="sengoku_rhythm" class="gameborder" style="width:400px;height:250px;padding:0px 0px 0px 0px" align="middle"/></div>
+            <div class="slider"><img src="images/talchulcover.png" alt="sengoku_rhythm" class="gameborder" style="width:400px;height:250px;padding:0px 0px 0px 0px" align="middle"/></div>
+            <a class="arrow left" onclick="getdiv(-1)">&#10094</a>
+            <a class="arrow right" onclick="getdiv(1)">&#10095</a>
+        </div>
+        <script>
+            var index = 1;
+            showdiv(index);
+            function getdiv(n) {
+                showdiv(index += n);
+            }
+            function showdiv(n) {
+                var i;
+                var a = document.getElementsByClassName("slider");
+                if (n > a.length) {
+                    index = 1;
+                }
+                if (n < 1) {
+                    index = a.length;
+                }
+                for (i = 0; i < a.length; i++) {
+                    a[i].style.display = "none";
+                }
+                a[index - 1].style.display = "block";
+            }
+        </script>
+    </body>
+</html>
