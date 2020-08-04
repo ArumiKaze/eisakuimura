@@ -1,235 +1,408 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE HTML>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Eisaku Imura - Portfolio</title>
-        <link href="style.css" type="text/css" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div id="container">
-            
-            <script src="js/three.js"></script> 
-            <script> //script to load stars and mountain
-                var container;
-                var camera, scene, renderer;
-                var stars;
-                var starSpanUpper;
-                var starSpanLower;
-                var starUpdate;
+<html>
+	<head>
+		<title>Eisaku Imura - Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-                init();
-                animate();
+		<!-- Wrapper-->
+			<div id="wrapper">
 
-                function init() {
-                    container = document.getElementById('container');
-                    camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 0.1, 1000);
-                    camera.position.z = 4;
-                    scene = new THREE.Scene();
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#" class="icon solid fa-home"><span>Home</span></a>
+						<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
+						<a href="#contact" class="icon solid fa-copy"><span>Resume</span></a>
+                        <!--<a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Social Media</span></a>-->
+					</nav>
 
-                    starUpdate = false;
-                    starSpanUpper = 1;
-                    starSpanLower = 0;
+				<!-- Main -->
+                    <div id="main">
 
-                    var geometry = new THREE.Geometry();
-                    var x, y, z;
-                    for (var i = 0; i < 1000; i++) {
-                        x = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                        y = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                        z = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                        geometry.vertices.push(new THREE.Vector3(x, y, z));
-                    }
+                        <!-- Me -->
+                        <article id="home" class="panel intro">
+                            <header>
+                                <h1>Eisaku Imura</h1>
+                                <p>Gameplay Engineer</p>
+                            </header>
+                            <a href="#work" class="jumplink pic">
+                                <span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+                                <img src="images/me.jpg" alt="" />
+                            </a>
+                        </article>
 
-                    var material = new THREE.PointsMaterial({
-                        size: 1,
-                        color: 0xffffcc
-                    });
+                        <!-- Work -->
+                        <article id="work" class="panel">
+                            <header>
+                                <h2>Projects</h2>
+                            </header>
+                            <p>
+                                Current and past projects.
+                            </p>
+                            <section>
+                                <div class="row">
+                                    <div class="col-4 col-6-medium col-12-small">
+                                        <a href="#shinguru" class="image fit">
+                                            <div class="fade">
+                                                <img src="images/shingurucover.png" alt="">
+                                                <div class="overlay">
+                                                    <div class="hoveroverlaytext">Shinguru</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 col-6-medium col-12-small">
+                                        <a href="#mindful" class="image fit">
+                                            <div class="fade">
+                                                <img src="images/mindfulcover.png" alt="">
+                                                <div class="overlay">
+                                                    <div class="hoveroverlaytext">Mindful</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 col-6-medium col-12-small">
+                                        <a href="#shroommates" class="image fit">
+                                            <div class="fade">
+                                                <img src="images/shroommatescover.png" alt="">
+                                                <div class="overlay">
+                                                    <div class="hoveroverlaytext">Shroommates</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 col-6-medium col-12-small">
+                                        <a href="#sengoku" class="image fit">
+                                            <div class="fade">
+                                                <img src="images/sengokuimages/sengokucover.png" alt="">
+                                                <div class="overlay">
+                                                    <div class="hoveroverlaytext">Sengoku Rhythm</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 col-6-medium col-12-small">
+                                        <a href="#talchul" class="image fit">
+                                            <div class="fade">
+                                                <img src="images/talchulimages/talchulcover.png" alt="">
+                                                <div class="overlay">
+                                                    <div class="hoveroverlaytext">Talchul</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
 
-                    stars = new THREE.Points(geometry, material); //create geometry and materials to add stars to the scene
-                    scene.add(stars);
+                        <!--WorkDetails-->
+                        <article id="shinguru" class="panel">
+                            <header>
+                                <h2>Shinguru</h2>
+                            </header>
+                        </article>
 
-                    /*
-                    var texture = new THREE.TextureLoader().load('images/moon.png');
-                    var image = new THREE.MeshBasicMaterial({
-                        map: texture
-                    });
-                    var circle = new THREE.Mesh(new THREE.CircleGeometry(50, 50), image);
-					circle.scale.set(0.015,0.015,1.0);
-                    circle.position.set(0, -0.3, 0);
-                    scene.add(circle);
-                    
-                    var texture2 = new THREE.TextureLoader().load('images/fuji.png');
-                    var image2 = new THREE.MeshBasicMaterial({
-                        map: texture2,
-                        transparent: true
-                    });
-                    var mountain = new THREE.Mesh(new THREE.PlaneGeometry(window.innerWidth / 2, window.innerHeight/2), image2);
-                    mountain.scale.set(0.015, 0.015, 1.0);
-                    mountain.position.set(0, -4, 0);
-                    scene.add(mountain);
-                    
-                    var textureLoader = new THREE.TextureLoader();
-                    var map = textureLoader.load('images/glow.png');
-                    var spriteMaterial = new THREE.SpriteMaterial({ map: map, color: 0x0000ff, transparent: false, blending: THREE.AdditiveBlending});
 
-                    var sprite = new THREE.Sprite(spriteMaterial);
-                    sprite.scale.set(150, 150, 1.0);
-                    circle.add(sprite); 
-                    */
-                    
-                    renderer = new THREE.WebGLRenderer({ alpha: true });
-                    renderer.setSize(window.innerWidth, window.innerHeight);
-                    container.appendChild(renderer.domElement);
-                    window.addEventListener('resize', onWindowResize, false);  //if window is resized, the scene is also adjusted to the new window size
-                }
 
-                function animate() { //keep rendering/updating the scene
-                    requestAnimationFrame(animate);
-                    render();
-                }
+                        <article id="mindful" class="panel">
+                            <header>
+                                <h2>Mindful</h2>
+                            </header>
+                        </article>
 
-                function render() {
-                    var starSpan = stars.material;
-                    var starPos = stars.geometry;
 
-                    stars.rotation.y += 0.0001;  //speed of rotation of stars
-                    stars.rotation.x += 0.0001;
 
-                    if (starSpanUpper > starSpan.size && !starUpdate) {
-                        starSpan.size += 0.01;
-                    }
-                    else if (!starUpdate) {
-                        starUpdate = true;
-                    }
-                    if (starSpanLower < starSpan.size && starUpdate) {
-                        starSpan.size -= 0.01;
-                    }
-                    else if (starUpdate) {
-                        starUpdate = false;
-                        /*
-                        starPos.verticesNeedUpdate = true;
-                        for (var i = 0; i < 1000; i++){
-                            starPos.vertices[i].x = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                            starPos.vertices[i].y = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                            starPos.vertices[i].z = ((Math.random() * (1.0 - 0.0)).toFixed(2) * 800) - 400;
-                        }*/
-                    }
+                        <article id="shroommates" class="panel">
+                            <header>
+                                <h2>Shroommates</h2>
+                            </header>
+                        </article>
 
-                    renderer.render(scene, camera);
-                }
 
-                function onWindowResize(event) {
-                    camera.aspect = window.innerWidth / window.innerHeight;
-                    camera.updateProjectionMatrix();
 
-                    renderer.setSize(window.innerWidth, window.innerHeight);
-                }
-            </script>
-            <ul class="nav">
-                <li>
-                    <a href="#mountainline">About</a>
-                    <a href="#hrline1">Work</a>
-                </li>
-            </ul>
-            <h1>Eisaku Imura</h1>
-            <h2>Game Programmer & Software Engineer</h2>
-            <div id="mountainline">
-                <img src="images/fuji.png" alt="fuji" style="width:1028px;height:526px;padding:3px 6px 3px 6px" align="middle">
-            </div>
-            <h3>About</h3>
-            <div id="divideline1">
-                <img src="images/linedivide2.png" alt="linedivide" style="width:256px;height:20px;" align="middle">
-            </div>
-            <p>Game Programmer | Software Engineer</p>
-            <p class="about_desc">Focusing on designing and building games/software that are not only entertaining, but can also have an impact on one's way of life.</p>
-            <div id="infoline">
-                <div id="info">
-					<a href="images/resume.pdf" target="_blank" style="text-decoration : none">
-                    <p class="resume_disc" style="color:#21aba5">
-                        <span style="display:block; vertical-align:top">
-                            <strong>Resume</strong>
-                        </span>
-                    </p>
-                        <img src="images/resume.png" alt="resume" style="width:64px;height:64px;padding:3px 6px 3px 6px" align="middle">
-                    </a>
+                        <article id="sengoku" class="panel">
+                            <div class="row aln-center">
+                                <header>
+                                    <h1>Sengoku Rhythm</h1>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <iframe width="600" height="400" src="https://www.youtube.com/embed/3nDrqtOcw1k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <dl>
+                                    <dt><b>Platform: </b>PC</dt>
+                                    <dt><b>Engines/Languages: </b>Processing (Java), Arduino (C++)</dt>
+                                    <dt><b>Development time: </b>3 months</dt>
+                                    <dt><b>Team size: </b>2</dt>
+                                    <dt><b>Completion year: </b>2017</dt>
+                                    <dt><b>Role: </b>Game Designer/Gameplay Engineer</dt>
+                                </dl>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>Overview</h2>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <p>
+                                    Encourage your warrior to fight well and intimidate your adversary by playing the Taiko and Shakuhachi better than your opponent!
+                                    <br />
+                                    <br />
+                                    The main objective of Sengoku Rhythm is to have two players fight an honorable Samurai duel by taking turns playing a Taiko and Shakuhachi.
+                                    The taiko and shakuhachi are simulated using alternative controllers to play the corresponding notes on the screen scrolling from the right.
+                                    Warriors will play
+                                    a series of beats in the form of tomoe symbols to deal damage to the opposing warrior. If a warrior plays all the notes correctly, the player
+                                    will gain a morale boost and deal damage based on how much morale they currently have. On the other hand if the player misses a note or a
+                                    couple of notes, the player will lose morale based on how much they missed and deal damage based on the newly decreased morale. To win the
+                                    duel, the player with the lowest health will lose either at the end of the song or when their health is below zero.
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>Prototype</h2>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/sengokuimages/5.jpg" alt="" style="width:420px;height:250px;">
+                                <img src="images/sengokuimages/6.jpg" alt="" style="width:420px;height:250px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    These two images above were the first concept prototype.
+                                    The idea was that there would be two opposing sides with their own respective health and morale bar.
+                                    Each player would take turns playing an instrument and hit the corresponding notes that would move from right to left.
+                                    This was pitched to a number of people and the project was able to acquire an artist to immediately progress and start working on the alpha build.
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/sengokuimages/3.jpg" alt="" style="width:420px;height:250px;">
+                                <img src="images/sengokuimages/4.jpg" alt="" style="width:420px;height:250px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    To create the Taiko (drums), Arduino and Piezo discs were used to detect vibrations/hits from the player.
+                                    Plastic baskets were used to imitate the drums and the discs were inserted under the basket where the player will hit the drum.
+                                    Even though the plastic drums were not ideal, players were able to hit the drum and it would detect the player's action.
+                                    Confident that our prototype works, we moved on with development to fully implement the game along with one more instrument.
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>Result</h2>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/sengokuimages/1.jpg" alt="" style="width:420px;height:250px;">
+                                <img src="images/sengokuimages/2.jpg" alt="" style="width:420px;height:250px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    All the way up to the final build, we focused our efforts on the player experience.
+                                    We listened to a lot of feedback on our game and as we thought the plastic baskets were very finicky so it was decided the drums had to be improved upon.
+                                    Although we would have loved to use very realistic rubber taiko drums or even real taiko drums, we were on a tight budget so we had to improvise.
+                                    In the end, we found out that a metal tea canister and a wooden kitchen tool holder had the best results with our sensors.
+                                    The art came in very rapidly and the artist on the team made tons of great art to the game to give it a nice polished look, replacing the classic programmer art,
+                                    so that it was in a style that reflected traditional Japanese ink paintings.
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/sengokuimages/7.jpg" alt="" style="width:300px;height:400px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    In addition to the drums, the shakuhachi was also rapidly developed so that the players had to swap back and forth between the two instruments in combat.
+                                    The flute used photoresistors (light detectors) to imitate the fingers covering the holes of the flute.
+                                    The photoresistors were placed in each of the flute's holes and when the fingers were on top of the photoresistors, that was deemed as an input and it would hit the corresponding notes that came up.
+                                </p>
+                            </div>
+                        </article>
+
+
+
+                        <article id="talchul" class="panel">
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>Talchul</h2>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <iframe width="600" height="400" src="https://www.youtube.com/embed/LeOIDRt1qlE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <dl>
+                                    <dt><b>Platform: </b>PC</dt>
+                                    <dt><b>Languages: </b>Jsfiddle (Javascript)</dt>
+                                    <dt><b>Development time: </b>3 months</dt>
+                                    <dt><b>Team size: </b>4</dt>
+                                    <dt><b>Completion year: </b>2016</dt>
+                                    <dt><b>Role: </b>Game Designer/Gameplay Engineer</dt>
+                                    <dt><b>Game: </b><a href="https://apexwinner.itch.io/talchul" target="_blank" style="color:#21aba5">Click here to play</a></dt>
+                                </dl>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>Overview</h2>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <p>
+                                    Talchul is a top-down stealth game where players are a refugee trying to escape a forced labor camp.
+                                    As you try to escape, players can meet other prisoners who join you to increase your ability to scout, but also increase the likelihood you'll be detected by guards.
+                                    <br />
+                                    Inspiration for the game came from current world events that occurred in 2016 and still continues to this day.
+                                    The original pitch for the game involved spreading awareness of North Korea's forced labor camps and the name of the game came from the Korean word for "to escape".
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <hr width="66%">
+                            </div>
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>Result</h2>
+                                </header>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/talchulimages/3.png" alt="" style="width:400px;height:400px;">
+                                <img src="images/talchulimages/5.png" alt="" style="width:400px;height:400px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    Talchul starts the player off in a hidden state where the guards will not detect the player.
+                                    The moment the player starts moving is when the prison break starts.
+                                    The red circle represents supporters that you can touch to gather them and the blue circle represents the guards.
+                                    The player has two circles around them. The larger outer circle represents the vision the player has around them and the second smaller circle
+                                    represents the level of suspicious activity that can be detected by guards.
+                                    The vision circle radius can be gradually increased by gathering more supporters, but at the same gathering more supporters will increase your suspicion to get detected more easily by increasing your detection radius.
+                                    However if you stand still for a period of time, you can temporarily hide from the guards since your detection radius will temporarily shrink over time.
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/talchulimages/4.png" alt="" style="width:400px;height:400px;">
+                                <img src="images/talchulimages/6.png" alt="" style="width:400px;height:400px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    Every now and then at random times, the guards will do a patrol sweep that covers the entire prison. The player will have to hide to avoid detection.
+                                    If the player is caught, the game ends representing your execution for attempted escape.
+                                    The player will be given the option to keep trying.
+                                </p>
+                            </div>
+                            <div class="row aln-center">
+                                <img src="images/talchulimages/7.png" alt="" style="width:400px;height:400px;">
+                                <img src="images/talchulimages/1.png" alt="" style="width:400px;height:400px;">
+                            </div>
+                            <div class="row aln-center">
+                                <br />
+                                <p>
+                                    Talchul is meant to be an endless game. No matter how hard or long the player tries, the player will not be able to escape and it is meant to reflect the situation in North Korea. 
+                                    You can stay under the radar easier if you lay low but once you start acting out, you become a bigger target for the regime to put down. 
+                                    After your fourth death, you get an option to "give up" and this leads to a game over screen with all your stats throughout all your retries.
+                                </p>
+                            </div>
+                        </article>
+
+                        <!-- Contact -->
+                        <article id="contact" class="panel">
+                            <div class="row aln-center">
+                                <header>
+                                    <h2>About Me</h2>
+                                </header>
+                            </div>
+                            <section>
+                                <div class="row aln-center">
+                                    <div class="col-8 col-8-medium col-12-small">
+                                        <a href="images/resume.pdf" class="image fit" target="_blank"><img src="images/resume.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row aln-center">
+                                    <div class="col-1 col-6-medium col-12-small">
+                                        <a href="https://www.linkedin.com/in/eisakuimura/" class="image fit" target="_blank"><img src="images/linkedin.jpg" alt=""></a>
+                                    </div>
+                                    <div class="col-1 col-6-medium col-12-small">
+                                        <a href="https://github.com/ArumiKaze" class="image fit" target="_blank"><img src="images/github.jpg" alt=""></a>
+                                    </div>
+                                    <div class="col-1 col-6-medium col-12-small">
+                                        <a href="https://twitter.com/ArumiKaze" class="image fit" target="_blank"><img src="images/twitter.jpg" alt=""></a>
+                                    </div>
+                                    <div class="col-1 col-6-medium col-12-small">
+                                        <a href="https://www.instagram.com/eisaku_imura/?hl=en" class="image fit" target="_blank"><img src="images/instagram.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                            </section>
+                            <!--
+        <form action="#" method="post">
+            <div>
+                <div class="row">
+                    <div class="col-6 col-12-medium">
+                        <input type="text" name="name" placeholder="Name" />
+                    </div>
+                    <div class="col-6 col-12-medium">
+                        <input type="text" name="email" placeholder="Email" />
+                    </div>
+                    <div class="col-12">
+                        <input type="text" name="subject" placeholder="Subject" />
+                    </div>
+                    <div class="col-12">
+                        <textarea name="message" placeholder="Message" rows="6"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" value="Send Message" />
+                    </div>
                 </div>
-                <div id="info">
-					<a href="https://www.linkedin.com/in/eisaku-imura-769436114/" target="_blank" style="text-decoration : none">
-                    <p class="resume_disc" style="color:#21aba5">
-                        <span style="display:block; vertical-align:top">
-                            <strong>LinkedIn</strong>
-                        </span>
-                    </p>
-                        <img src="images/linkedin.png" alt="linkedin" style="width:64px;height:64px;padding:3px 6px 3px 6px" align="middle">
-                    </a>
-                </div>
-                <div id="info">
-					<a href="https://github.com/ArumiKaze" target="_blank" style="text-decoration : none">
-                    <p class="resume_disc" style="color:#21aba5">
-                        <span style="display:block; vertical-align:top">
-                            <strong>GitHub</strong>
-                        </span>
-                    </p>
-                        <img src="images/github.png" alt="github" style="width:64px;height:64px;padding:3px 6px 3px 6px" align="middle">
-                    </a>
-                </div>
             </div>
-            <div id="hrline1">
-                <hr width="40%">
-            </div>
-            <h4>Work</h4>
-            <div id="divideline2">
-                <img src="images/linedivide2.png" alt="linedivide" style="width:256px;height:20px;" align="middle">
-            </div>
-            <div id="shroommatesline">
-                <p class="game_disc" style="color:#21aba5">
-                    <img src="images/shroommatescover.png" alt="shroommates" class="gameborder" style="width:800px;height:400px;padding:0px 0px 0px 0px" align="middle">
-                    <span style="display:block; vertical-align:bottom; padding-top: 10px;">
-                        <strong><font size="6">Shroommates</font></strong>
-                    </span>
-                </p>
-                <p class="game_disc" style="color:white">
-                    <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
-                        <i><strong><font size="4">Lead QA Tester • Lead Level Designer • Programmer</font></strong></i>
-                    </span>
-                </p>
-                <a href="https://www.youtube.com/watch?v=5kakWsqaqzs" target="_blank" class="button">Trailer</a>
-                <div class="divider"></div>
-                <a href="https://banana-shrooms.itch.io/shroommates?password=omegalul" target="_blank" class="button">Details</a>
-            </div>
-            <div id="sengokuline">
-                <p class="game_disc" style="color:#21aba5">
-                    <img src="images/sengoku.png" alt="sengoku_rhythm" class="gameborder" style="width:800px;height:400px;padding:0px 0px 0px 0px" align="middle">
-                    <span style="display:block; vertical-align:bottom; padding-top: 10px;">
-                       <strong><font size="6">Sengoku Rhythm</font></strong>
-                    </span>
-                </p>
-                <p class="game_disc" style="color:white">
-                    <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
-                        <i><strong><font size="4">Game Designer • Programmer</font></strong></i>
-                    </span>
-                </p>
-                <a href="https://www.youtube.com/watch?v=3nDrqtOcw1k" target="_blank" class="button">Trailer</a>
-                <div class="divider"></div>
-                <a href="sengoku.html" target="_self" class="button">Details</a>
-            </div>
-            <div id="talchulline">
-                <p class="game_disc" style="color:#21aba5">
-                    <img src="images/talchulcover.png" alt="talchul" class="gameborder" style="width:800px;height:400px;padding:0px 0px 0px 0px" align="middle">
-                    <span style="display:block; vertical-align:bottom; padding-top: 10px;">
-                        <strong><font size="6">Talchul</font></strong>
-                    </span>
-                </p>
-                <p class="game_disc" style="color:white">
-                    <span style="display:block; vertical-align:bottom; padding:0px 0px 10px 0px">
-                        <i><strong><font size="4">Game Designer • Programmer</font></strong></i>
-                    </span>
-                </p>
-                <a href="https://www.youtube.com/watch?v=LeOIDRt1qlE" target="_blank" class="button">Trailer</a>
-                <div class="divider"></div>
-                <a href="talchul.html" target="_self" class="button">Details</a>
-            </div>
-        </div>
-    </body>
+        </form>
+        -->
+                        </article>
+
+                    </div>
+
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li>&copy; 2020 Eisaku Imura</li>
+						</ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
