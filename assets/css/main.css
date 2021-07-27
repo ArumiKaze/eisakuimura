@@ -296,12 +296,12 @@ input, select, textarea {
             }
 
 .row {
-    margin-top: -1.25em;
-    margin-left: -1.25em;
+    margin-top: 0em;
+    margin-left: 0em;
 }
 
     .row > * {
-        padding: 1.25em 0 0 1.25em;
+        padding: 0.75em 0 0 0.75em;
     }
 
     .row.gtr-uniform {
@@ -539,12 +539,12 @@ input, select, textarea {
                 }
 
     .row {
-        margin-top: -1.25em;
-        margin-left: -1.25em;
+        margin-top: 0em;
+        margin-left: 0em;
     }
 
         .row > * {
-            padding: 1.25em 0 0 1.25em;
+            padding: 0.75em 0 0 0.75em;
         }
 
         .row.gtr-uniform {
@@ -788,7 +788,7 @@ input, select, textarea {
     }
 
         .row > * {
-            padding: 1.25em 0 0 1.25em;
+            padding: 0.75em 0 0 0.75em;
         }
 
         .row.gtr-uniform {
@@ -1032,7 +1032,7 @@ input, select, textarea {
     }
 
         .row > * {
-            padding: 1.25em 0 0 1.25em;
+            padding: 0.75em 0 0 0.75em;
         }
 
         .row.gtr-uniform {
@@ -1276,7 +1276,7 @@ input, select, textarea {
     }
 
         .row > * {
-            padding: 1.25em 0 0 1.25em;
+            padding: 0.75em 0 0 0.75em;
         }
 
         .row.gtr-uniform {
@@ -1435,8 +1435,8 @@ em, i {
 hr {
     border: 0;
     border-top: solid 1px #ddd;
-    padding: 1.5em 0 0 0;
-    margin: 1.75em 0 0 0;
+    padding: 0 0 0 0;
+    margin: 1em 0 0 1em;
 }
 
 sub {
@@ -1457,7 +1457,7 @@ br.clear {
 
 p, ul, ol, dl, table, blockquote, form {
     font-size: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 0;
 }
 
 /* Table */
@@ -1551,18 +1551,18 @@ section, article {
     }
 
 header {
-    margin: 0 0 1.5em 0;
+    margin: 0 0 0 0;
 }
 
     header > p {
-        margin: 0.5em 0 0 0;
+        margin: 0 0 0 0;
         color: #aaa;
     }
 
 @media screen and (max-width: 736px) {
 
     header {
-        margin: 0 0 1em 0;
+        margin: 0 0 0 0;
     }
 }
 
@@ -1595,7 +1595,7 @@ header {
 
     .image.centered {
         display: block;
-        margin: 0 0 2em 0;
+        margin: 0 0 0 0;
     }
 
         .image.centered img {
@@ -2275,4 +2275,22 @@ body.is-preload #wrapper {
     to {
         opacity: 1
     }
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    margin: 1em 0 0 1em;
+}
+
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
 }

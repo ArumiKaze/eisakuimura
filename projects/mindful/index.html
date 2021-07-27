@@ -26,29 +26,19 @@
                     <header>
                         <h1>Mindful</h1>
                     </header>
-                </div>
-                <div class="row aln-center">
-                    <iframe width="600" height="400" src="https://player.vimeo.com/video/571833814" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="row aln-center">
+                    <div class="container">
+                        <iframe class="responsive-iframe" src="https://player.vimeo.com/video/571833814" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
                     <hr width="100%">
-                </div>
-                <div class="row aln-center">
                     <header>
                         <h2>Overview</h2>
                     </header>
-                </div>
-                <div class="row aln-center">
                     <p>
                         Mindful is an empathy-driven VR concept. The goal was to create heartfelt immersive worlds that allow people to witness life through the eyes of another, and hopefully
                         expand their views and perspectives. This first episode was originally created as a proof of concept, but as a result of ongoing current events and the widespread problem
                         of human displacement around the globe, it's taking on an important life of its own. Episode 1 is a seated experience developed for the Oculus Rift in Unreal Engine 4.
                     </p>
-                </div>
-                <div class="row aln-center">
                     <hr width="100%">
-                </div>
-                <div class="row aln-center">
                     <dl>
                         <dt><b>Platform: </b>VR on PC</dt>
                         <dt><b>Engine/Languages: </b>Unreal Engine 4 (C++/Blueprints)</dt>
@@ -56,16 +46,10 @@
                         <dt><b>Team size: </b>5</dt>
                         <dt><b>Role: </b>Gameplay Engineer</dt>
                     </dl>
-                </div>
-                <div class="row aln-center">
                     <hr width="100%">
-                </div>
-                <div class="row aln-center">
                     <header>
                         <h2>Gallery</h2>
                     </header>
-                </div>
-                <div class="row aln-center">
                     <div class="slideshow-container">
                         <div class="mySlides fade">
                             <div class="numbertext">1 / 8</div>
@@ -102,27 +86,60 @@
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
                     </div>
-                </div>
-                <div class="row aln-center">
                     <hr width="100%">
-                </div>
-                <div class="row aln-center">
                     <header>
                         <h2>Notes</h2>
                     </header>
-                </div>
-                <div class="row aln-center">
                     <p>
                         As the sole programmer for Mindful, I was responsible for stringing together all the various assets that were made by the other
                         team members as well as doing my main duty of implementing VR functionality and all of the gameplay mechanics. To make sure the team can work efficiently
                         as possible, I also setup and managed a remote Perforce server that everyone had access to for source control. While there are many aspects of the
-                        experience I would like to write down, I would like to talk about one of my proudest technical achivements while working on Mindful.
+                        experience I would like to write down, I would like to talk about some of my proudest technical achivements while working on Mindful.
                     </p>
-                </div>
-                <div class="row aln-center">
+                    <hr width="100%">
                     <header>
                         <h2>3D In VR</h2>
                     </header>
+                    <p>
+                        While working on the portals in Mindful, I discovered something really interesting. 3D in VR. Wait a minute... aren't we already utilizing stereoscopy to make VR work normally? Yes, we are!
+                        However we can go further and create a steroscopic effect within our steroscopic VR headset, a "3D-ception". This is achieved by creating a material/shader that shows a different image based
+                        on which eye it is rendering the image for. Thus, we can create an effect similar to the ones you see in 3D films without 3D glasses because you are practically already wearing one!
+                    </p>
+                    <img src="../../assets/images/mindfulimages/vr3d1.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        The secret sauce is actually quite simple. In the materials asset, we can create a custom expression node to write one line of code that will return a 0 if the material is being rendered for the left eye and a 1 for the right eye.
+                        In the code field you would input: <b>return ResolvedView.StereoPassIndex;</b>
+                        <br />
+                        After inputting the code, you just have to set the output type field to <b>CMOT Float 1</b> and you are done with the most important part. Now that we are done with this part, there are two different ways we can do to
+                        create the 3D effect. The first method requires you to provide a single image/texture while the other method requires you to provide a side by side image/texture.
+                    </p>
+                    <header>
+                        <h3>Single Image Method</h3>
+                    </header>
+                    <img src="../../assets/images/mindfulimages/vr3d2.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        As the name suggests, this method just requires a singular image or video in the form of a texture. Using the custom node we created earlier, we can shift the texture UV coordinates for each eye so that they are slightly
+                        offset from each other. In my tests, shifting each texture by 0.05 to the left and right respectively was sufficient enough to create the 3D effect. You may experiment with this value however to yield a stronger or weaker 3D effect.
+                        You can also swap the left and right eye texture shift to create depth OR make the texture "pop out". Unfortunately, I am unable to demonstrate this on a flat screenshot or video so you will just have to take my word for it!
+                    </p>
+                    <header>
+                        <h3>Side-By-Side Method</h3>
+                    </header>
+                    <img src="../../assets/images/mindfulimages/vr3d3.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        For this method, we require a side-by-side image/video texture and we separate each image for each eye. We can achieve this by retrieving one half of the texture by specifying the UV texture coordinates for each eye.
+                        0 ~ 0.5 in the U coordinate for one eye and 0.5 ~ 1 in the U coordinate for the other eye. Then, we just do the same steps as the first method to create the 3D effect. Look at the image below if you are not sure what a side-by-side image looks like.
+                    </p>
+                    <img src="../../assets/images/mindfulimages/vr3d4.jpg" alt="" style="width:100%;height:100%;">
+                    <header>
+                        <h3>Conclusion</h3>
+                    </header>
+                    <img src="../../assets/images/mindfulimages/vr3d5.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        Once you have created the materials, you can apply these on a plane and they work like a charm. I imagine this neat trick can be used for things such as 3D art galleries or viewing 3D movies in VR, but I'm sure there are many more ways to 
+                        fully utilize this knowledge on a VR experience or game. Please feel free to download and check out the example project from my GitHub with 3DVR implemented 
+                        already if you so wish: <a href="https://github.com/ArumiKaze/3DVR" target="_blank" style="color:#21aba5">Link</a>
+                    </p>
                 </div>
             </article>
         </div>
