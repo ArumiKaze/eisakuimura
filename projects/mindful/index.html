@@ -40,10 +40,12 @@
                     </p>
                     <hr width="100%">
                     <dl>
-                        <dt><b>Platform: </b>VR on PC</dt>
-                        <dt><b>Engine/Languages: </b>Unreal Engine 4 (C++/Blueprints)</dt>
-                        <dt><b>Development time: </b>1 year 2 months</dt>
-                        <dt><b>Team size: </b>5</dt>
+                        <dt><b>Platform: </b>VR</dt>
+                        <dt><b>Engine/Languages: </b>Unreal Engine 4</dt>
+                        <dt><b>Languages: </b>C++/Blueprints</dt>
+                        <dt><b>Development Time: </b>1 year 2 months</dt>
+                        <dt><b>Year of Completion: </b>2020</dt>
+                        <dt><b>Team Size: </b>5</dt>
                         <dt><b>Role: </b>Gameplay Engineer</dt>
                     </dl>
                     <hr width="100%">
@@ -94,8 +96,64 @@
                         As the sole programmer for Mindful, I was responsible for stringing together all the various assets that were made by the other
                         team members as well as doing my main duty of implementing VR functionality and all of the gameplay mechanics. To make sure the team can work efficiently
                         as possible, I also setup and managed a remote Perforce server that everyone had access to for source control. While there are many aspects of the
-                        experience I would like to write down, I would like to talk about some of my proudest technical achivements while working on Mindful.
+                        experience I would like to write down, I would like to talk about some of my proudest technical achievements while working on Mindful.
                     </p>
+                    <hr width="100%">
+                    <header>
+                        <h2>VR Portal</h2>
+                    </header>
+                    <p>
+                        The most challenging mechanic I had to implement in Mindful were the portals. Portals have been done before, especially in the famous game Portal by Valve, but at the time of this project I have never seen
+                        another game implement portals in VR yet. The biggest challenges when it came to implementing portals in VR is having to render the scene twice because of the very nature of how a VR headset works (having to render for each eye) and making sure
+                        the portal effect doesn't look "flat" when looking at the portal through a headset since portals were always viewed on a flat monitor.
+                    </p>
+                    <img src="../../assets/images/mindfulimages/vrportal1.png" alt="" style="width:100%;height:100%;">
+                    <img src="../../assets/images/mindfulimages/vrportal2.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        The setup for the portal actor is fairly simple and only consists of three components which are the portal mesh, the left scene capture camera component, and the right scene capture camera component for each eye respectively. The most important part to notice
+                        in the constructor so far is that the tick function is set to "PostUpdateWork" and we have a second tick function set to "PostPhysics". The main idea with this setup is to handle our character's teleportation in the "PostPhysics" tick while updating our portal
+                        screen in the "PostUpdateWork" so that the character's teleportation comes first before updating our portal screen in the same tick.
+                    </p>
+                    <img src="../../assets/images/mindfulimages/vrportal3.png" alt="" style="width:100%;height:100%;">
+                    <img src="../../assets/images/mindfulimages/vrportal4.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        Here is the update portal function where as the name suggests, updates what you see on the portal mesh by updating the scene capture camera components. We update the camera's post processing effects, update the clipping plane of our cameras based on the
+                        opposite linked portal's current location/rotation, get the camera projection matrices from Unreal's ULocalPlayer class, and then calculate the camera's location/rotation while taking in account for any recursive portals.
+                    </p>
+                    <img src="../../assets/images/mindfulimages/vrportal5.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        This is where we check whether the player's VR headset has passed through the portal mesh and teleport them if their current camera position and the previous camera position intersect the mesh. The teleport function is fairly straight forward as it just
+                        sets the player's new location/rotation relative to the old portal mesh.
+                    </p>
+                    <header>
+                        <h3>Portal Material</h3>
+                    </header>
+                    <img src="../../assets/images/mindfulimages/vr3d1.png" alt="" style="width:100%;height:100%;">
+                    <img src="../../assets/images/mindfulimages/vrportal6.png" alt="" style="width:100%;height:100%;">
+                    <p>
+                        We only need to use one material for the portal mesh. However, there is one special thing we have to do so that our material will work for VR. In the materials asset, we can create a custom expression node to write one line of code
+                        that will return a 0 if the material is being rendered for the left eye and a 1 for the right eye.
+                        In the code field you would input: <b>return ResolvedView.StereoPassIndex;</b>
+                        <br />
+                        After inputting the code, you just have to set the output type field to <b>CMOT Float 1</b> and you are done with the most important part.
+                        The other component of the material is adjusting the offset of the material whenever the player camera is close to the portal to prevent flickering when passing through the portal.
+                    </p>
+                    <header>
+                        <h3>Results</h3>
+                    </header>
+                    <video style="width:100%;height:100%;" controls>
+                        <source src="../../assets/images/mindfulimages/VRPortal.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        As you can see from the video, the portals work in VR seamlessly while maintaining a frame rate at about 80 FPS and we have
+                        achieved our original goal of implementing a seamless portal in VR that does not look "flat". Please feel free to download and check out the example project from my GitHub repository or download the pre-packaged project with a simple executible file.
+                    </p>
+                    <a href="https://github.com/ArumiKaze/PortalVR" target="_blank" style="width:35%;height:100%;">
+                        <img src="../../assets/images/buttonGitHubRepo.png" alt="" style="width:100%;height:100%;">
+                    </a>
+                    <a href="VRPortalPKG.zip" download style="width:35%;height:100%;">
+                        <img src="../../assets/images/buttonPKGDownload.png" alt="" style="width:100%;height:100%;">
+                    </a>
                     <hr width="100%">
                     <header>
                         <h2>3D In VR</h2>
@@ -104,14 +162,7 @@
                         While working on the portals in Mindful, I discovered something really interesting. 3D in VR. Wait a minute... aren't we already utilizing stereoscopy to make VR work normally? Yes, we are!
                         However we can go further and create a steroscopic effect within our steroscopic VR headset, a "3D-ception". This is achieved by creating a material/shader that shows a different image based
                         on which eye it is rendering the image for. Thus, we can create an effect similar to the ones you see in 3D films without 3D glasses because you are practically already wearing one!
-                    </p>
-                    <img src="../../assets/images/mindfulimages/vr3d1.png" alt="" style="width:100%;height:100%;">
-                    <p>
-                        The secret sauce is actually quite simple. In the materials asset, we can create a custom expression node to write one line of code that will return a 0 if the material is being rendered for the left eye and a 1 for the right eye.
-                        In the code field you would input: <b>return ResolvedView.StereoPassIndex;</b>
-                        <br />
-                        After inputting the code, you just have to set the output type field to <b>CMOT Float 1</b> and you are done with the most important part. Now that we are done with this part, there are two different ways we can do to
-                        create the 3D effect. The first method requires you to provide a single image/texture while the other method requires you to provide a side by side image/texture.
+                        There are two different ways we can do to create the 3D effect. The first method requires you to provide a single image/texture while the other method requires you to provide a side by side image/texture.
                     </p>
                     <header>
                         <h3>Single Image Method</h3>
@@ -132,14 +183,19 @@
                     </p>
                     <img src="../../assets/images/mindfulimages/vr3d4.jpg" alt="" style="width:100%;height:100%;">
                     <header>
-                        <h3>Conclusion</h3>
+                        <h3>Results</h3>
                     </header>
                     <img src="../../assets/images/mindfulimages/vr3d5.png" alt="" style="width:100%;height:100%;">
                     <p>
-                        Once you have created the materials, you can apply these on a plane and they work like a charm. I imagine this neat trick can be used for things such as 3D art galleries or viewing 3D movies in VR, but I'm sure there are many more ways to 
-                        fully utilize this knowledge on a VR experience or game. Please feel free to download and check out the example project from my GitHub with 3DVR implemented 
-                        already if you so wish: <a href="https://github.com/ArumiKaze/3DVR" target="_blank" style="color:#21aba5">Link</a>
+                        Once you have created the materials, you can apply these on a plane and they work like a charm. I imagine this neat trick can be used for things such as 3D art galleries or viewing 3D movies in VR, but I'm sure there are many more ways to
+                        fully utilize this knowledge in a VR experience or game. Please feel free to download and check out the example project from my GitHub repository or download the pre-packaged project with a simple executible file.
                     </p>
+                    <a href="https://github.com/ArumiKaze/3DVR" target="_blank" style="width:35%;height:100%;">
+                        <img src="../../assets/images/buttonGitHubRepo.png" alt="" style="width:100%;height:100%;">
+                    </a>
+                    <a href="3DVRPKG.zip" download style="width:35%;height:100%;">
+                        <img src="../../assets/images/buttonPKGDownload.png" alt="" style="width:100%;height:100%;">
+                    </a>
                 </div>
             </article>
         </div>
