@@ -226,5 +226,5 @@ function showSlides(n) {
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
   }
-  if (slides.length > 0) {slides[slideIndex-1].style.display = "block";}
+  if (slides.length > 1 && slides !== undefined && slides !== null) {slides[slideIndex-1].style.display = "block";}
 }
