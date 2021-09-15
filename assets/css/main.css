@@ -2206,6 +2206,8 @@ body.is-preload #wrapper {
     max-width: 1000px;
     position: relative;
     margin: auto;
+    width: 100%;
+    display: block;
 }
 
 /* Hide the images by default */
